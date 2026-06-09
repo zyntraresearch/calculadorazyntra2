@@ -667,6 +667,7 @@
             <button class="pill" data-val="70">70</button>
             <button class="pill" data-val="80">80</button>
             <button class="pill" data-val="100">100</button>
+            <button class="pill" data-val="500">500</button>
           </div>
         </div>
         <div class="field">
@@ -830,7 +831,8 @@
     { name: "BPC-157", amountMg: 10, defaultDoseMg: 0.25, administration: "1-2x/dia", duration: "4-12 sem" },
     { name: "Tirzepatida 60mg", amountMg: 60, defaultDoseMg: 2.5, administration: "Semanal", duration: "Contínuo" },
     { name: "HGH Frag 176-191", amountMg: 5, defaultDoseMg: 0.25, administration: "Jejum / Pré-cardio", duration: "8-12 sem" },
-    { name: "DSIP (Delta Sleep Inducing Peptide)", amountMg: 10, defaultDoseMg: 0.1, administration: "Noturno (1-2h antes dormir)", duration: "6-12 sem" }
+    { name: "DSIP (Delta Sleep Inducing Peptide)", amountMg: 10, defaultDoseMg: 0.1, administration: "Noturno (1-2h antes dormir)", duration: "6-12 sem" },
+    { name: "NAD+ (Nicotinamida Adenina Dinucleotídeo)", amountMg: 500, defaultDoseMg: 50.0, administration: "Diário/alternado (SC/IV)", duration: "Contínuo / Ciclos" }
   ];
 
   function renderProductsTable(filter = "") {
@@ -847,8 +849,7 @@
         <td><span class="admin-badge">${p.administration}</span></td>
         <td>${p.duration}</td>
         <td><button class="use-row-btn" onclick="event.stopPropagation();applyProduct('${p.name.replace(/'/g, "\\'")}', ${p.amountMg}, ${p.defaultDoseMg})">Aplicar</button></td>
-      </tr>
-    `).join("");
+      </tr>    `).join("");
   }
 
   window.applyProduct = function(name, amountMg, defaultDoseMg) {
