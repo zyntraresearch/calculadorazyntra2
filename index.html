@@ -45,7 +45,6 @@
     padding: 0 24px;
   }
 
-  /* HERO - LOGO GRANDE */
   .hero {
     padding: 48px 0 32px;
     text-align: center;
@@ -128,7 +127,6 @@
     margin: 0 auto;
   }
 
-  /* card principal */
   .main-card {
     background: var(--surface-white);
     border-radius: var(--radius-lg);
@@ -167,7 +165,6 @@
     padding: 28px;
   }
 
-  /* grid de inputs */
   .grid-inputs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -800,7 +797,7 @@
 </div>
 
 <script>
-  // Base de peptídeos com doses de referência em mg
+  // Base de peptídeos atualizada com KPV, PT-141, NAD+, Selank, SLU-PP-332, GLOW, KLOW
   const peptidesLibrary = [
     { name: "5-Amino-1MQ", low: "100–150 mcg", high: "~500 mcg", admin: "1–2x/dia", duration: "8–12 sem", doseMg: 0.1 },
     { name: "AOD-9604", low: "250 mcg", high: "~600 mcg", admin: "1–2x/dia", duration: "Contínuo", doseMg: 0.25 },
@@ -811,16 +808,23 @@
     { name: "DSIP", low: "100–200 mcg", high: "1 mg", admin: "Noturno", duration: "6–12 sem", doseMg: 0.1 },
     { name: "Epitalon", low: "2 mg", high: "10 mg", admin: "1–2x/dia", duration: "20 dias/ano", doseMg: 2.0 },
     { name: "GHK-Cu", low: "1 mg", high: "4 mg", admin: "1–2x/dia", duration: "8–12 sem", doseMg: 1.0 },
+    { name: "GLOW (Blend)", low: "1 mg", high: "2 mg", admin: "Diária (SC)", duration: "4–8 sem", doseMg: 1.5 },
     { name: "Ipamorelin", low: "100 mcg", high: "500 mcg", admin: "1–3x/dia", duration: "8–12 sem", doseMg: 0.1 },
+    { name: "KLOW (Blend)", low: "500 mcg", high: "1 mg", admin: "Diária (SC)", duration: "4–6 sem", doseMg: 0.75 },
+    { name: "KPV", low: "250 mcg", high: "1000 mcg", admin: "Diária (SC)", duration: "Contínuo", doseMg: 0.5 },
     { name: "Melanotan II", low: "250 mcg", high: "1 mg", admin: "Diária", duration: "2–4 sem", doseMg: 0.25 },
-    { name: "MOTS-C", low: "5 mg/sem", high: "15 mg/sem", admin: "2–3x/sem", duration: "4–8 sem", doseMg: 5.0 },
+    { name: "MOTS-c", low: "5 mg/sem", high: "15 mg/sem", admin: "2–3x/sem", duration: "4–8 sem", doseMg: 5.0 },
+    { name: "NAD+ (Injetável)", low: "50 mg", high: "100 mg", admin: "Diário/alternado", duration: "Contínuo", doseMg: 50.0 },
+    { name: "PT-141", low: "1 mg", high: "1.75 mg", admin: "Sob demanda", duration: "Até 24h", doseMg: 1.5 },
     { name: "Retatrutida", low: "1 mg/sem", high: "12 mg/sem", admin: "Semanal", duration: "Contínuo", doseMg: 1.0 },
+    { name: "Selank", low: "200 mcg", high: "400 mcg", admin: "Nasal/SC", duration: "Diária", doseMg: 0.2 },
     { name: "Semaglutida", low: "0.25 mg/sem", high: "2.4 mg/sem", admin: "Semanal", duration: "Contínuo", doseMg: 0.25 },
-    { name: "Tesamorelin", low: "1 mg", high: "2 mg", admin: "Noturno", duration: "8–12 sem", doseMg: 1.0 },
-    { name: "Tirzepatida", low: "2.5 mg/sem", high: "15 mg/sem", admin: "Semanal", duration: "Contínuo", doseMg: 2.5 },
-    { name: "TB-500", low: "2 mg/sem", high: "10 mg/sem", admin: "1–3x/sem", duration: "4–8 sem", doseMg: 2.0 },
+    { name: "Semax", low: "200 mcg", high: "600 mcg", admin: "Nasal/SC", duration: "Diária", doseMg: 0.2 },
+    { name: "SLU-PP-332", low: "300 mcg", high: "500 mcg", admin: "Oral/SC", duration: "4–8 sem", doseMg: 0.3 },
     { name: "SS-31", low: "2 mg", high: "20 mg", admin: "Diária", duration: "4–12 sem", doseMg: 2.0 },
-    { name: "Semax", low: "250 mcg", high: "1 mg", admin: "1–2x/dia", duration: "10–30 dias", doseMg: 0.25 }
+    { name: "TB-500", low: "2 mg/sem", high: "10 mg/sem", admin: "1–3x/sem", duration: "4–8 sem", doseMg: 2.0 },
+    { name: "Tesamorelin", low: "1 mg", high: "2 mg", admin: "Noturno", duration: "8–12 sem", doseMg: 1.0 },
+    { name: "Tirzepatida", low: "2.5 mg/sem", high: "15 mg/sem", admin: "Semanal", duration: "Contínuo", doseMg: 2.5 }
   ];
 
   function renderPeptideTable(filter = "") {
@@ -842,26 +846,17 @@
     `).join("");
   }
 
-  // Função principal que aplica a dose do peptídeo na calculadora
   window.applyPeptideDose = function(name, doseMg) {
-    // Preenche o campo de dose
     const doseInput = document.getElementById("inp-dose");
     doseInput.value = doseMg;
-    
-    // Dispara o cálculo automaticamente
     calculate();
-    
-    // Mostra toast de confirmação
     const toast = document.getElementById("globalToast");
     document.getElementById("toastPeptideName").innerText = name;
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 2500);
-    
-    // Scroll suave para a calculadora
     document.querySelector(".main-card").scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Sincroniza pills ativas
   function syncPillsActive(type, val) {
     document.querySelectorAll(`#pills-${type} .pill`).forEach(btn => {
       const btnVal = parseFloat(btn.getAttribute("data-val"));
@@ -914,7 +909,7 @@
 
   function updateSyringeVisual(units) {
     let pct = Math.min(Math.max(units, 0), 100);
-    const maxWidth = 510; // 580 - 70
+    const maxWidth = 510;
     const fluidWidth = (pct / 100) * maxWidth;
     const fluidRect = document.getElementById("syringeFluid");
     if (fluidRect) fluidRect.setAttribute("width", Math.max(0, fluidWidth));
@@ -938,7 +933,6 @@
     const volumeNecessario = dose / concentracao;
     const unidadesU100 = volumeNecessario * 100;
     
-    // Atualiza todos os campos
     document.getElementById("r-dose").innerText = formatNumber(dose, 3);
     document.getElementById("r-units-main").innerText = formatNumber(unidadesU100, 2);
     document.getElementById("r-conc").innerText = formatNumber(concentracao, 2);
@@ -948,11 +942,9 @@
     
     updateSyringeVisual(unidadesU100);
     
-    // Mostra o painel de resultados
     const panel = document.getElementById("resultsPanel");
     if (!panel.classList.contains("visible")) panel.classList.add("visible");
     
-    // Atualiza link do WhatsApp
     const waMsg = encodeURIComponent(`Olá! Utilizei a calculadora da Zyntra Labs:\n\nMaterial: ${mg} mg\nDiluente: ${ml} mL\nDose desejada: ${dose} mg\n\nResultado: ${formatNumber(unidadesU100, 2)} unidades U100`);
     document.getElementById("whatsappShareBtn").href = `https://wa.me/?text=${waMsg}`;
   }
@@ -969,7 +961,6 @@
     setTimeout(() => toast.classList.remove("show"), 1500);
   }
 
-  // Inicialização
   window.addEventListener("load", () => {
     renderPeptideTable("");
     attachPills();
@@ -978,13 +969,11 @@
     document.getElementById("calcBtn").addEventListener("click", calculate);
     document.getElementById("copyLinkBtn").addEventListener("click", copyLink);
     
-    // Carrega valores da URL se existirem
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("mg")) document.getElementById("inp-mg").value = urlParams.get("mg");
     if (urlParams.get("ml")) document.getElementById("inp-ml").value = urlParams.get("ml");
     if (urlParams.get("dose")) document.getElementById("inp-dose").value = urlParams.get("dose");
     
-    // Sincroniza pills e executa cálculo inicial
     syncPillsActive("mg", parseFloat(document.getElementById("inp-mg").value));
     syncPillsActive("ml", parseFloat(document.getElementById("inp-ml").value));
     calculate();
