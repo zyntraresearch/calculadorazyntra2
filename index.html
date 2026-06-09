@@ -658,7 +658,6 @@
             <span class="unit-symbol">mg</span>
           </div>
           <div class="pills-group" id="pills-mg">
-            <!-- Pills com todas as quantidades de produtos -->
             <button class="pill" data-val="5">5</button>
             <button class="pill" data-val="10">10</button>
             <button class="pill" data-val="20">20</button>
@@ -775,17 +774,17 @@
 
   <div class="table-section">
     <div class="section-title">Tabela <span class="gold">Educacional</span> — Peptídeos</div>
-    <div class="table-sub">Clique em qualquer linha para aplicar a dose na calculadora automaticamente.</div>
+    <div class="table-sub">Clique em qualquer linha para aplicar a quantidade do frasco e a dose na calculadora.</div>
     <div class="disclaimer-tag">
-      <span>⚠️</span> Dados educacionais. Consulte profissional habilitado. Faixas aproximadas.
+      <span>⚠️</span> Dados educacionais. Consulte profissional habilitado. Diluição: até 20mg usar 2mL, acima 3mL.
     </div>
     <div class="search-bar">
-      <input type="text" id="searchPeptide" class="search-input" placeholder="Buscar peptídeo...">
+      <input type="text" id="searchPeptide" class="search-input" placeholder="Buscar produto...">
     </div>
     <div class="table-wrapper">
       <table class="peptide-table" id="peptideTable">
         <thead>
-          <tr><th>Peptídeo</th><th>Quantidade do Produto (mg)</th><th>Dose recomendada</th><th>Administração</th><th>Duração</th><th></th></tr>
+          <tr><th>Produto</th><th>Quantidade (mg)</th><th>Dose recomendada</th><th>Administração</th><th>Duração</th><th></th></tr>
         </thead>
         <tbody id="peptideTbody"></tbody>
       </table>
@@ -798,7 +797,7 @@
 </div>
 
 <div id="globalToast" class="toast-message">
-  <span>✅</span> Produto <strong id="toastPeptideName"></strong> aplicado (${document.getElementById("inp-mg")?.value || 0}mg / ${document.getElementById("inp-ml")?.value || 2}mL)
+  <span>✅</span> <strong id="toastPeptideName"></strong>
 </div>
 
 <script>
@@ -829,7 +828,9 @@
     { name: "CJC + Ipamorelin (Blend)", amountMg: 10, defaultDoseMg: 0.2, administration: "1-3x/dia", duration: "8-12 sem" },
     { name: "SS-31", amountMg: 10, defaultDoseMg: 2.0, administration: "Diária", duration: "4-12 sem" },
     { name: "BPC-157", amountMg: 10, defaultDoseMg: 0.25, administration: "1-2x/dia", duration: "4-12 sem" },
-    { name: "Tirzepatida 60mg", amountMg: 60, defaultDoseMg: 2.5, administration: "Semanal", duration: "Contínuo" }
+    { name: "Tirzepatida 60mg", amountMg: 60, defaultDoseMg: 2.5, administration: "Semanal", duration: "Contínuo" },
+    { name: "HGH Frag 176-191", amountMg: 5, defaultDoseMg: 0.25, administration: "Jejum / Pré-cardio", duration: "8-12 sem" },
+    { name: "DSIP (Delta Sleep Inducing Peptide)", amountMg: 10, defaultDoseMg: 0.1, administration: "Noturno (1-2h antes dormir)", duration: "6-12 sem" }
   ];
 
   function renderProductsTable(filter = "") {
