@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>ZYNTRAz Labs — Calculadora de Concentração e Peptídeos</title>
+<title>Zyntra Labs — Calculadora de Concentração</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -45,7 +45,7 @@
     padding: 0 24px;
   }
 
-  /* HERO - LOGO GRANDE (600px desktop, responsiva) */
+  /* HERO - LOGO GRANDE */
   .hero {
     padding: 48px 0 32px;
     text-align: center;
@@ -69,16 +69,15 @@
 
   .logo-img {
     width: 100%;
-    max-width: 600px;    /* LOGO ATÉ 600px DE LARGURA */
+    max-width: 600px;
     height: auto;
     object-fit: contain;
     display: block;
   }
 
-  /* Ajuste para mobile: logo ocupa 90% da largura da tela, mas sem ultrapassar 600px */
   @media (max-width: 680px) {
     .logo-img {
-      max-width: 90vw;   /* em telas pequenas, ocupa 90% da viewport */
+      max-width: 90vw;
     }
     .hero {
       padding: 32px 0 24px;
@@ -260,7 +259,6 @@
     color: #8b6b28;
   }
 
-  /* botão calcular */
   .btn-calc {
     width: 100%;
     background: var(--gold-primary);
@@ -286,7 +284,6 @@
     box-shadow: 0 12px 20px -8px rgba(198, 164, 63, 0.4);
   }
 
-  /* resultados */
   .results-panel {
     display: none;
     animation: fadeSlideUp 0.5s ease;
@@ -637,9 +634,8 @@
 <div class="container">
   <div class="hero">
     <div class="logo-container">
-      <!-- LOGO GRANDE: até 600px de largura, responsiva -->
       <a href="#" class="logo-link">
-        <img src="/assets/zyntralogo1.png" alt="ZYNTRA Labs" class="logo-img" onerror="this.src='https://placehold.co/600x120?text=ZYNTRALABS'">
+        <img src="/assets/zyntralogo1.png" alt="Zyntra Labs" class="logo-img" onerror="this.src='https://placehold.co/600x120/f5f5f0/C6A43F?text=ZYNTRA+LABS'">
       </a>
     </div>
     <div class="badge-science">
@@ -661,7 +657,7 @@
         <div class="field">
           <label>🔬 MATERIAL <i>(mg)</i></label>
           <div class="input-wrapper">
-            <input type="number" id="inp-mg" placeholder="0" step="any" value="">
+            <input type="number" id="inp-mg" placeholder="0" step="any" value="10">
             <span class="unit-symbol">mg</span>
           </div>
           <div class="pills-group" id="pills-mg">
@@ -675,7 +671,7 @@
         <div class="field">
           <label>💧 DILUENTE <i>(mL)</i></label>
           <div class="input-wrapper">
-            <input type="number" id="inp-ml" placeholder="0" step="any" value="">
+            <input type="number" id="inp-ml" placeholder="0" step="any" value="2">
             <span class="unit-symbol">mL</span>
           </div>
           <div class="pills-group" id="pills-ml">
@@ -689,7 +685,7 @@
         <div class="field">
           <label>📊 DOSE DESEJADA <i>(mg)</i></label>
           <div class="input-wrapper">
-            <input type="number" id="inp-dose" placeholder="0" step="any" value="">
+            <input type="number" id="inp-dose" placeholder="0" step="any" value="0.25">
             <span class="unit-symbol">mg</span>
           </div>
         </div>
@@ -699,17 +695,17 @@
         <span>CALCULAR DOSE EXATA</span> <span>→</span>
       </button>
 
-      <div id="resultsPanel" class="results-panel">
+      <div id="resultsPanel" class="results-panel visible">
         <div class="main-result-block">
           <div class="grid-results-main">
             <div class="result-main-item">
               <div class="result-label">DOSE PRESCRITA</div>
-              <div class="result-number" id="r-dose">—</div>
+              <div class="result-number" id="r-dose">0.25</div>
               <div class="result-unit-sm">miligramas (mg)</div>
             </div>
             <div class="result-main-item">
               <div class="result-label">ASPIRAR (U100)</div>
-              <div class="result-number" id="r-units-main">—</div>
+              <div class="result-number" id="r-units-main">5.00</div>
               <div class="result-unit-sm">unidades na seringa</div>
             </div>
           </div>
@@ -718,17 +714,17 @@
         <div class="secondary-grid">
           <div class="info-card">
             <div class="info-label">CONCENTRAÇÃO</div>
-            <div class="info-value" id="r-conc">—</div>
+            <div class="info-value" id="r-conc">5.00</div>
             <div class="info-unit">mg / mL</div>
           </div>
           <div class="info-card">
             <div class="info-label">VOLUME NECESSÁRIO</div>
-            <div class="info-value" id="r-vol">—</div>
+            <div class="info-value" id="r-vol">0.050</div>
             <div class="info-unit">mL</div>
           </div>
           <div class="info-card">
             <div class="info-label">ESCALA U100</div>
-            <div class="info-value" id="r-units">—</div>
+            <div class="info-value" id="r-units">5.00</div>
             <div class="info-unit">unidades</div>
           </div>
         </div>
@@ -736,7 +732,7 @@
         <div class="syringe-card">
           <div class="syringe-header">
             <span style="font-weight: 500;">💉 Leitura da seringa (insulina U100)</span>
-            <span class="syringe-badge" id="syringe-badge-val">0 un.</span>
+            <span class="syringe-badge" id="syringe-badge-val">5.00 un.</span>
           </div>
           <div class="svg-syringe-container">
             <svg viewBox="0 0 680 90" xmlns="http://www.w3.org/2000/svg" style="width:100%">
@@ -747,7 +743,7 @@
                 </linearGradient>
               </defs>
               <rect x="70" y="18" width="520" height="54" rx="8" fill="#FCFAF5" stroke="#E2DDD3" stroke-width="1.5"/>
-              <rect id="syringeFluid" x="75" y="24" width="0" height="42" rx="4" fill="url(#fluidGrad)" opacity="0.85"/>
+              <rect id="syringeFluid" x="75" y="24" width="25.5" height="42" rx="4" fill="url(#fluidGrad)" opacity="0.85"/>
               <g font-family="JetBrains Mono, monospace" font-size="8" fill="#7A6F5A" text-anchor="middle">
                 <line x1="580" y1="18" x2="580" y2="28" stroke="#C0B7A6"/><text x="580" y="15">100</text>
                 <line x1="530" y1="18" x2="530" y2="26" stroke="#D6D0C4"/><text x="530" y="15">90</text>
@@ -761,8 +757,8 @@
                 <line x1="130" y1="18" x2="130" y2="26" stroke="#D6D0C4"/><text x="130" y="15">10</text>
                 <line x1="80" y1="18" x2="80" y2="28" stroke="#C0B7A6"/><text x="80" y="15">0</text>
               </g>
-              <rect id="plungerHead" x="580" y="20" width="14" height="50" rx="5" fill="#94A3B8" stroke="#5F6C84"/>
-              <rect id="plungerRod" x="590" y="42" width="55" height="6" rx="3" fill="#B9C2D4"/>
+              <rect id="plungerHead" x="95.5" y="20" width="14" height="50" rx="5" fill="#94A3B8" stroke="#5F6C84"/>
+              <rect id="plungerRod" x="107.5" y="42" width="55" height="6" rx="3" fill="#B9C2D4"/>
             </svg>
           </div>
         </div>
@@ -777,17 +773,17 @@
 
   <div class="table-section">
     <div class="section-title">Tabela <span class="gold">Educacional</span> — Peptídeos</div>
-    <div class="table-sub">Referência de faixas e doses. Clique na linha para pré-preencher a dose.</div>
+    <div class="table-sub">Clique em qualquer linha para aplicar a dose na calculadora automaticamente.</div>
     <div class="disclaimer-tag">
       <span>⚠️</span> Dados educacionais. Consulte profissional habilitado. Faixas aproximadas.
     </div>
     <div class="search-bar">
-      <input type="text" id="searchPeptide" class="search-input" placeholder="Buscar peptídeo, via de adm..">
+      <input type="text" id="searchPeptide" class="search-input" placeholder="Buscar peptídeo...">
     </div>
     <div class="table-wrapper">
       <table class="peptide-table" id="peptideTable">
         <thead>
-          <tr><th>Peptídeo</th><th>Faixa inf.</th><th>Faixa sup.</th><th>Administração</th><th>Duração</th><th></th></tr>
+          <tr><th>Peptídeo</th><th>Faixa inferior</th><th>Faixa superior</th><th>Administração</th><th>Duração</th><th></th></tr>
         </thead>
         <tbody id="peptideTbody"></tbody>
       </table>
@@ -795,7 +791,7 @@
   </div>
 
   <div class="footer-note">
-    <strong>ZYNTRALABS</strong> — Ciência, pureza e precisão em cada protocolo.
+    <strong>ZYNTRA LABS</strong> — Ciência, pureza e precisão em cada protocolo.
   </div>
 </div>
 
@@ -804,49 +800,75 @@
 </div>
 
 <script>
+  // Base de peptídeos com doses de referência em mg
   const peptidesLibrary = [
-    { name:"5-Amino-1MQ / 1MK", low:"100–150 mcg/dia", high:"~500 mcg 2x/dia", admin:"1–2x/dia", duration:"8–12 sem", doseMg:0.1 },
-    { name:"AOD-9604", low:"250 mcg/dia", high:"~600 mcg/dia", admin:"1–2x/dia", duration:"Contínuo", doseMg:0.25 },
-    { name:"BPC-157 (sistêmico)", low:"150–250 mcg/dia", high:"500–800 mcg", admin:"1–2x/dia", duration:"4–12 sem", doseMg:0.2 },
-    { name:"BPC-157 (oral)", low:"250 mcg/dia", high:"1000–1500 mcg/dia", admin:"1–2x/dia", duration:"4–12 sem", doseMg:0.25 },
-    { name:"CJC-1295 (DAC)", low:"1 mg/semana", high:"4 mg/semana", admin:"Semanal", duration:"3 meses ON", doseMg:1 },
-    { name:"CJC-1295 (sem DAC)", low:"200 mcg", high:"300 mcg", admin:"1–3x/dia", duration:"8–12 sem", doseMg:0.2 },
-    { name:"DSIP", low:"100–200 mcg", high:"1 mg", admin:"Noturno", duration:"6–12 sem", doseMg:0.1 },
-    { name:"Epitalon", low:"2 mg/dia", high:"10 mg/dia", admin:"1–2x/dia", duration:"20 dias/ano", doseMg:2 },
-    { name:"GHK-Cu", low:"1 mg/dia", high:"4 mg/dia", admin:"1–2x/dia", duration:"8–12 sem", doseMg:1 },
-    { name:"Ipamorelin", low:"100 mcg", high:"500 mcg", admin:"1–3x/dia", duration:"8–12 sem", doseMg:0.1 },
-    { name:"Melanotan II", low:"250 mcg/dia", high:"1 mg/dia", admin:"Diária", duration:"2–4 sem", doseMg:0.25 },
-    { name:"Retatrutida", low:"1 mg/semana", high:"12 mg/semana", admin:"Semanal", duration:"Contínuo", doseMg:1 },
-    { name:"Semaglutida", low:"0,25 mg/sem", high:"2,4 mg/sem", admin:"Semanal", duration:"Contínuo", doseMg:0.25 },
-    { name:"Tesamorelin", low:"1 mg/dia", high:"2 mg/dia", admin:"Noturno", duration:"8–12 sem", doseMg:1 },
-    { name:"Tirzepatida", low:"2,5 mg/sem", high:"15 mg/sem", admin:"Semanal", duration:"Contínuo", doseMg:2.5 },
-    { name:"TB-500 (TB-4)", low:"2 mg/semana", high:"10 mg/semana", admin:"1–3x/sem", duration:"4–8 sem", doseMg:2 }
+    { name: "5-Amino-1MQ", low: "100–150 mcg", high: "~500 mcg", admin: "1–2x/dia", duration: "8–12 sem", doseMg: 0.1 },
+    { name: "AOD-9604", low: "250 mcg", high: "~600 mcg", admin: "1–2x/dia", duration: "Contínuo", doseMg: 0.25 },
+    { name: "BPC-157 (sistêmico)", low: "150–250 mcg", high: "500–800 mcg", admin: "1–2x/dia", duration: "4–12 sem", doseMg: 0.2 },
+    { name: "BPC-157 (oral)", low: "250 mcg", high: "1000–1500 mcg", admin: "1–2x/dia", duration: "4–12 sem", doseMg: 0.25 },
+    { name: "CJC-1295 (DAC)", low: "1 mg/sem", high: "4 mg/sem", admin: "Semanal", duration: "3 meses ON", doseMg: 1.0 },
+    { name: "CJC-1295 (sem DAC)", low: "200 mcg", high: "300 mcg", admin: "1–3x/dia", duration: "8–12 sem", doseMg: 0.2 },
+    { name: "DSIP", low: "100–200 mcg", high: "1 mg", admin: "Noturno", duration: "6–12 sem", doseMg: 0.1 },
+    { name: "Epitalon", low: "2 mg", high: "10 mg", admin: "1–2x/dia", duration: "20 dias/ano", doseMg: 2.0 },
+    { name: "GHK-Cu", low: "1 mg", high: "4 mg", admin: "1–2x/dia", duration: "8–12 sem", doseMg: 1.0 },
+    { name: "Ipamorelin", low: "100 mcg", high: "500 mcg", admin: "1–3x/dia", duration: "8–12 sem", doseMg: 0.1 },
+    { name: "Melanotan II", low: "250 mcg", high: "1 mg", admin: "Diária", duration: "2–4 sem", doseMg: 0.25 },
+    { name: "MOTS-C", low: "5 mg/sem", high: "15 mg/sem", admin: "2–3x/sem", duration: "4–8 sem", doseMg: 5.0 },
+    { name: "Retatrutida", low: "1 mg/sem", high: "12 mg/sem", admin: "Semanal", duration: "Contínuo", doseMg: 1.0 },
+    { name: "Semaglutida", low: "0.25 mg/sem", high: "2.4 mg/sem", admin: "Semanal", duration: "Contínuo", doseMg: 0.25 },
+    { name: "Tesamorelin", low: "1 mg", high: "2 mg", admin: "Noturno", duration: "8–12 sem", doseMg: 1.0 },
+    { name: "Tirzepatida", low: "2.5 mg/sem", high: "15 mg/sem", admin: "Semanal", duration: "Contínuo", doseMg: 2.5 },
+    { name: "TB-500", low: "2 mg/sem", high: "10 mg/sem", admin: "1–3x/sem", duration: "4–8 sem", doseMg: 2.0 },
+    { name: "SS-31", low: "2 mg", high: "20 mg", admin: "Diária", duration: "4–12 sem", doseMg: 2.0 },
+    { name: "Semax", low: "250 mcg", high: "1 mg", admin: "1–2x/dia", duration: "10–30 dias", doseMg: 0.25 }
   ];
 
-  function renderPeptideTable(filter="") {
-    const filtered = peptidesLibrary.filter(p => p.name.toLowerCase().includes(filter) || p.admin.toLowerCase().includes(filter));
+  function renderPeptideTable(filter = "") {
+    const lowerFilter = filter.toLowerCase();
+    const filtered = peptidesLibrary.filter(p => 
+      p.name.toLowerCase().includes(lowerFilter) || 
+      p.admin.toLowerCase().includes(lowerFilter)
+    );
     const tbody = document.getElementById("peptideTbody");
     tbody.innerHTML = filtered.map(p => `
-      <tr onclick="setPeptideDose('${p.name.replace(/'/g, "\\'")}', ${p.doseMg})">
-        <td style="font-weight:500;">${p.name}</td>
+      <tr onclick="applyPeptideDose('${p.name.replace(/'/g, "\\'")}', ${p.doseMg})">
+        <td style="font-weight: 600;">${p.name}</td>
         <td>${p.low}</td>
         <td>${p.high}</td>
         <td><span class="admin-badge">${p.admin}</span></td>
         <td>${p.duration}</td>
-        <td><button class="use-row-btn" onclick="event.stopPropagation();setPeptideDose('${p.name.replace(/'/g, "\\'")}', ${p.doseMg})">Usar dose</button></td>
+        <td><button class="use-row-btn" onclick="event.stopPropagation();applyPeptideDose('${p.name.replace(/'/g, "\\'")}', ${p.doseMg})">Aplicar dose</button></td>
       </tr>
     `).join("");
   }
 
-  window.setPeptideDose = (name, doseMg) => {
-    document.getElementById("inp-dose").value = doseMg;
-    tryAutoCalc();
+  // Função principal que aplica a dose do peptídeo na calculadora
+  window.applyPeptideDose = function(name, doseMg) {
+    // Preenche o campo de dose
+    const doseInput = document.getElementById("inp-dose");
+    doseInput.value = doseMg;
+    
+    // Dispara o cálculo automaticamente
+    calculate();
+    
+    // Mostra toast de confirmação
     const toast = document.getElementById("globalToast");
     document.getElementById("toastPeptideName").innerText = name;
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 2500);
+    
+    // Scroll suave para a calculadora
     document.querySelector(".main-card").scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  // Sincroniza pills ativas
+  function syncPillsActive(type, val) {
+    document.querySelectorAll(`#pills-${type} .pill`).forEach(btn => {
+      const btnVal = parseFloat(btn.getAttribute("data-val"));
+      if (!isNaN(btnVal) && btnVal === val) btn.classList.add("active");
+      else btn.classList.remove("active");
+    });
+  }
 
   function attachPills() {
     document.querySelectorAll("#pills-mg .pill").forEach(btn => {
@@ -865,75 +887,76 @@
         tryAutoCalc();
       });
     });
-    document.getElementById("inp-mg").addEventListener("input", () => syncPillsActive("mg", parseFloat(document.getElementById("inp-mg").value)));
-    document.getElementById("inp-ml").addEventListener("input", () => syncPillsActive("ml", parseFloat(document.getElementById("inp-ml").value)));
-  }
-
-  function syncPillsActive(type, val) {
-    document.querySelectorAll(`#pills-${type} .pill`).forEach(btn => {
-      const btnVal = parseFloat(btn.getAttribute("data-val"));
-      if (btnVal === val) btn.classList.add("active");
-      else btn.classList.remove("active");
+    document.getElementById("inp-mg").addEventListener("input", () => {
+      syncPillsActive("mg", parseFloat(document.getElementById("inp-mg").value));
+      tryAutoCalc();
     });
+    document.getElementById("inp-ml").addEventListener("input", () => {
+      syncPillsActive("ml", parseFloat(document.getElementById("inp-ml").value));
+      tryAutoCalc();
+    });
+    document.getElementById("inp-dose").addEventListener("input", tryAutoCalc);
   }
 
   function tryAutoCalc() {
     const mg = parseFloat(document.getElementById("inp-mg").value);
     const ml = parseFloat(document.getElementById("inp-ml").value);
     const dose = parseFloat(document.getElementById("inp-dose").value);
-    if (mg>0 && ml>0 && dose>0) calculate();
+    if (mg > 0 && ml > 0 && dose > 0) calculate();
   }
 
-  function formatSmart(n) {
-    if(isNaN(n)) return "0";
-    if(Math.abs(n) < 0.001) return n.toFixed(4);
-    if(n >= 100) return n.toFixed(0);
-    if(n >= 1) return n.toFixed(2);
-    return n.toFixed(3);
-  }
-
-  function formatUnits(n) {
-    if(n >= 10) return n.toFixed(1);
-    return n.toFixed(2);
+  function formatNumber(n, decimals = 2) {
+    if (isNaN(n)) return "0";
+    if (n < 0.01 && n > 0) return n.toFixed(4).replace(/\.?0+$/, "");
+    if (n >= 100) return n.toFixed(0);
+    return n.toFixed(decimals);
   }
 
   function updateSyringeVisual(units) {
     let pct = Math.min(Math.max(units, 0), 100);
-    const maxWidth = 510;
+    const maxWidth = 510; // 580 - 70
     const fluidWidth = (pct / 100) * maxWidth;
     const fluidRect = document.getElementById("syringeFluid");
-    if(fluidRect) fluidRect.setAttribute("width", Math.max(0, fluidWidth));
+    if (fluidRect) fluidRect.setAttribute("width", Math.max(0, fluidWidth));
     const plungerX = 70 + fluidWidth;
     const plungerHead = document.getElementById("plungerHead");
-    if(plungerHead) plungerHead.setAttribute("x", Math.min(plungerX, 570));
+    if (plungerHead) plungerHead.setAttribute("x", Math.min(plungerX, 570));
     const rod = document.getElementById("plungerRod");
-    if(rod) rod.setAttribute("x", Math.min(plungerX + 12, 590));
+    if (rod) rod.setAttribute("x", Math.min(plungerX + 12, 590));
   }
 
   function calculate() {
     const mg = parseFloat(document.getElementById("inp-mg").value);
     const ml = parseFloat(document.getElementById("inp-ml").value);
     const dose = parseFloat(document.getElementById("inp-dose").value);
-    if(!mg || !ml || !dose || mg<=0 || ml<=0 || dose<=0) {
-      alert("Preencha todos os campos com valores positivos.");
+    
+    if (!mg || !ml || !dose || mg <= 0 || ml <= 0 || dose <= 0) {
       return;
     }
-    const conc = mg / ml;
-    const volNeeded = dose / conc;
-    const unitsU100 = volNeeded * 100;
-    document.getElementById("r-dose").innerText = dose.toFixed(2);
-    document.getElementById("r-units-main").innerText = formatUnits(unitsU100);
-    document.getElementById("r-conc").innerText = formatSmart(conc);
-    document.getElementById("r-vol").innerText = volNeeded.toFixed(3);
-    document.getElementById("r-units").innerText = formatUnits(unitsU100);
-    document.getElementById("syringe-badge-val").innerText = `${formatUnits(unitsU100)} un.`;
-    updateSyringeVisual(unitsU100);
+    
+    const concentracao = mg / ml;
+    const volumeNecessario = dose / concentracao;
+    const unidadesU100 = volumeNecessario * 100;
+    
+    // Atualiza todos os campos
+    document.getElementById("r-dose").innerText = formatNumber(dose, 3);
+    document.getElementById("r-units-main").innerText = formatNumber(unidadesU100, 2);
+    document.getElementById("r-conc").innerText = formatNumber(concentracao, 2);
+    document.getElementById("r-vol").innerText = volumeNecessario < 0.01 ? volumeNecessario.toFixed(4) : volumeNecessario.toFixed(3);
+    document.getElementById("r-units").innerText = formatNumber(unidadesU100, 2);
+    document.getElementById("syringe-badge-val").innerText = formatNumber(unidadesU100, 2) + " un.";
+    
+    updateSyringeVisual(unidadesU100);
+    
+    // Mostra o painel de resultados
     const panel = document.getElementById("resultsPanel");
-    if(!panel.classList.contains("visible")) panel.classList.add("visible");
-    const waMsg = encodeURIComponent(`Olá! Utilizei a calculadora ZYNTRALabs:\nMaterial: ${mg} mg\nDiluente: ${ml} mL\nDose: ${dose} mg\nResultado: ${formatUnits(unitsU100)} unidades U100`);
+    if (!panel.classList.contains("visible")) panel.classList.add("visible");
+    
+    // Atualiza link do WhatsApp
+    const waMsg = encodeURIComponent(`Olá! Utilizei a calculadora da Zyntra Labs:\n\nMaterial: ${mg} mg\nDiluente: ${ml} mL\nDose desejada: ${dose} mg\n\nResultado: ${formatNumber(unidadesU100, 2)} unidades U100`);
     document.getElementById("whatsappShareBtn").href = `https://wa.me/?text=${waMsg}`;
   }
-
+  
   function copyLink() {
     const mg = document.getElementById("inp-mg").value;
     const ml = document.getElementById("inp-ml").value;
@@ -946,17 +969,25 @@
     setTimeout(() => toast.classList.remove("show"), 1500);
   }
 
+  // Inicialização
   window.addEventListener("load", () => {
-    attachPills();
     renderPeptideTable("");
-    document.getElementById("searchPeptide").addEventListener("input", (e) => renderPeptideTable(e.target.value.toLowerCase()));
+    attachPills();
+    
+    document.getElementById("searchPeptide").addEventListener("input", (e) => renderPeptideTable(e.target.value));
     document.getElementById("calcBtn").addEventListener("click", calculate);
     document.getElementById("copyLinkBtn").addEventListener("click", copyLink);
+    
+    // Carrega valores da URL se existirem
     const urlParams = new URLSearchParams(window.location.search);
-    if(urlParams.get("mg")) document.getElementById("inp-mg").value = urlParams.get("mg");
-    if(urlParams.get("ml")) document.getElementById("inp-ml").value = urlParams.get("ml");
-    if(urlParams.get("dose")) document.getElementById("inp-dose").value = urlParams.get("dose");
-    if(urlParams.get("mg") && urlParams.get("ml") && urlParams.get("dose")) setTimeout(calculate, 300);
+    if (urlParams.get("mg")) document.getElementById("inp-mg").value = urlParams.get("mg");
+    if (urlParams.get("ml")) document.getElementById("inp-ml").value = urlParams.get("ml");
+    if (urlParams.get("dose")) document.getElementById("inp-dose").value = urlParams.get("dose");
+    
+    // Sincroniza pills e executa cálculo inicial
+    syncPillsActive("mg", parseFloat(document.getElementById("inp-mg").value));
+    syncPillsActive("ml", parseFloat(document.getElementById("inp-ml").value));
+    calculate();
   });
 </script>
 </body>
